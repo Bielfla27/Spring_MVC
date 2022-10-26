@@ -15,8 +15,8 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model){
 		Pedido pedido = new Pedido();
-		pedido.setNomeProduto("Xbox");
-		pedido.setUrlImagem("https://http2.mlstatic.com/D_NQ_NP_2X_627914-MLA40655732617_022020-V.webp");
+		pedido.setNomeProduto("Xbox Series S");
+		pedido.setUrlImagem("https://m.media-amazon.com/images/I/81Z1xBs6GoL._AC_SX569_.jpg");
 		pedido.setUrlProduto("https://www.mercadolivre.com.br/microsoft-xbox-one-s-1tb-standard-cor-branco/p/MLB14114827");
 		pedido.setDescricao("Xbox o melhor sem duvida");
 		
