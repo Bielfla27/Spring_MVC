@@ -19,7 +19,7 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model){
 	
-		List<Pedido> pedidos = pedidoRepository.retornaTodosOsPedidos();
+		List<Pedido> pedidos = pedidoRepository.findAll();
 		model.addAttribute("pedidos", pedidos);
 		
 		//model.getAttribute(null); posso confirir e pegar os parêmetros pelo id assim 
