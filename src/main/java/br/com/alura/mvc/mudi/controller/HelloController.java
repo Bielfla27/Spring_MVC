@@ -11,6 +11,7 @@ public class HelloController {
 	@GetMapping("/hello") //dizendo para o spring que quando chegar uma requisição com o método /hello  a Action @GetMapping chamar esse método que vai levar para view hello.html
 	public String hello(Model model) {
 		model.addAttribute("nome", "Fofão");
+		
 		return "hello";
 	}
 }
