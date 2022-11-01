@@ -6,7 +6,7 @@ import br.com.alura.mvc.mudi.model.Pedido;
 
 public class RequisicaoNovoPedido {
 		
-		@NotBlank
+		@NotBlank //Para da uma mensagem de erro que vem como padrão = não pode estar em branco
 		private String nomeProduto;
 		@NotBlank
 		private String urlProduto;
