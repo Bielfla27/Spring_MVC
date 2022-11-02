@@ -32,7 +32,7 @@ public class PedidoController {
 		}
 		Pedido pedido = novoPedido.toPedido();
 		pedidosRepository.save(pedido);
-		return "";
+		return "redirect:/home";
 	}
 }
 
