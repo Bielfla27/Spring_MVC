@@ -15,7 +15,6 @@ import br.com.alura.mvc.mudi.model.StatusPedido;
 @Repository //Estou dizendo para o Spring – “essa classe aqui é um repositório e eu quero que você gerencie essa classe e crie instâncias toda vez que alguém pedir” 
 public interface PedidosRepository extends JpaRepository<Pedido, Long> {
 
-	@org.springframework.data.jpa.repository.Query
 	List<Pedido> findByStatus(StatusPedido status);
 
 	@Query("Select p from Pedido p join p.user u where u.username = :username")
