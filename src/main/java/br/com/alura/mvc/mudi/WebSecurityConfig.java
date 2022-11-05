@@ -18,12 +18,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+
 		.authorizeRequests()
 			.anyRequest().authenticated()
 		.and()
 		.formLogin((form) -> form   
 				.loginPage("/login") //dizendo para redirecionar para a página /login para fazer o login
-				.permitAll()); // dando permição para todos os usuarios 
+				.permitAll())// dando permição para todos os usuarios 
+		.logout(logout -> logout.logoutUrl("/logout")); //deslogando o usuario 
+		
 	}
 	
 	
