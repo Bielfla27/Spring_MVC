@@ -29,13 +29,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 
 		.authorizeRequests()
+		.antMatchers("/home/**") //estou abrindo uma exceção para qualquer pessoa poder ver a página /home
+		.permitAll()
 			.anyRequest().authenticated()
 		.and()
 		.formLogin((form) -> form   
 				.loginPage("/login") //dizendo para redirecionar para a página /login para fazer o login
 				.defaultSuccessUrl("/usuario/pedido", true) //dizendo que toda vez que o usario fizer o login corretamente vá para página home
 				.permitAll()) // dando permição para todos os usuarios 
-		.logout(logout -> logout.logoutUrl("/logout")) //deslogando o usuario 
+		.logout(logout ->{
+		logout.logoutUrl("/logout") //deslogando o usuario 
+		 .logoutSuccessUrl("/home"); // quando deslogar ir para a página /home
+		}) 
 		.csrf().disable();								 
 		
 	}
