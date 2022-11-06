@@ -2,6 +2,7 @@ package br.com.alura.mvc.mudi.repository;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,7 @@ import br.com.alura.mvc.mudi.model.StatusPedido;
 @Repository //Estou dizendo para o Spring – “essa classe aqui é um repositório e eu quero que você gerencie essa classe e crie instâncias toda vez que alguém pedir” 
 public interface PedidosRepository extends JpaRepository<Pedido, Long> {
 
+	@Cacheable("pedidos")
 	List<Pedido> findByStatus(StatusPedido status, Pageable sort);
 
 	@Query("Select p from Pedido p join p.user u where u.username = :username")
