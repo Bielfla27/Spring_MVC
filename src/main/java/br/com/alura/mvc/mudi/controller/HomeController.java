@@ -29,7 +29,7 @@ public class HomeController {
 	public String home(Model model,Principal principal){
 		
 		Sort sort = Sort.by("dataDaEntrega").descending(); // para fazer a consulta pela data e por ordem decrescente
-		PageRequest paginação = PageRequest.of(0, 1, sort); // colocando paginação no site e dizendo quantos itens mostrar por cada página e ordenando pelo sort 
+		PageRequest paginação = PageRequest.of(0, 5, sort); // colocando paginação no site e dizendo quantos itens mostrar por cada página e ordenando pelo sort 
 	
 		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.ENTREGUE, paginação);
 		model.addAttribute("pedidos", pedidos);
