@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,8 +27,11 @@ public class HomeController {
 
 	@GetMapping
 	public String home(Model model,Principal principal){
+		
+		Sort sort = Sort.by("dataDaEntrega").descending(); // para fazer a consulta pela data e por ordem decrescente
+		PageRequest paginação = PageRequest.of(0, 1, sort); // colocando paginação no site e dizendo quantos itens mostrar por cada página e ordenando pelo sort 
 	
-		List<Pedido> pedidos = pedidoRepository.findAllByStatus(StatusPedido.ENTREGUE);
+		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.ENTREGUE, paginação);
 		model.addAttribute("pedidos", pedidos);
 		
 		//model.getAttribute(null); posso confirir e pegar os parêmetros pelo id assim 
