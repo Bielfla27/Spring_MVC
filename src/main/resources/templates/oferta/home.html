@@ -1,41 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="~{base :: head}"></head>
 
-	<body>
-		<div th:replace="~{base :: logo}"></div>
-		
-		<div class="container">
-			<div th:replace="~{base :: titulo('Ultimos Pedidos')}"></div>
-		
-			<div class="card mt-3" th:each="pedido : ${pedidos}">
-				
-				<div th:text="${pedido.nomeProduto}" class="card-header alert alert-dark " >Nome do produto</div>
-				
-				
-				<div class="card-body">
-					<div class="row">
-						<div class="col-12 col-sm-8 mb-3">
-							<div class="row">
-								<div class="col-md-5">Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}">200,99</span></div>
-								<div class="col-md-7">Data da entrega: <span th:text="${#temporals.format(pedido.dataDaEntrega, 'dd/MM/yyyy')}">10/09/2020</span></div>
-							</div>
-							<div>Produto</div>
-							<div><input th:value="${pedido.urlProduto}" class="form-control" value="url do produto"></div>
-							
-							<div>Descricao</div>
-							<div>
-								<textarea th:text="${pedido.descricao}" class="form-control">descicrao do pedido</textarea>
-							</div>
-						</div>
-						<div class="col-12 col-sm-4" >
-							<div>
-								<img class="img-thumbnail"  th:src="${pedido.urlImagem}" src=""/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+<head th:replace="~{base :: head}">
+</head>
+
+<body onload="onLoad()">
+    <div th:replace="~{base :: logo}"></div>
+
+    <div class="container" id="ofertas">
+
+        <div th:replace="~{base :: titulo('Faça sua Oferta')}"></div>
+
+        <div class="card mt-3" v-for="pedido in pedidos">
+
+            <div class="card-header alert-warning">{{pedido.nomeProduto}}</div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-8 mb-3">
+                        <div class="row">
+                            <div class="col-md-5">Valor: <input/></div>
+                            <div class="col-md-7">Data de Entrega: <input/></div>
+                        </div>
+
+                        <div>Produto</div>
+                        <div><a v-bind:href="pedido.urlProduto">{{pedido.nomeProduto}}</a></div>
+
+                        <div>Descrição</div>
+                        <div>
+                            <textarea class="form-control">{{pedido.descricao}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div>
+                            <img class="img-thumbnail" v-bind:src="pedido.urlImagem">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function onLoad(){
+            var app = new Vue({
+                el : '#ofertas',
+                data : {
+                    pedidos : [
+                    	{
+                    		"id": 6,
+                    		"nomeProduto": "Mouse",
+                    		"valorNegociado": null,
+                    		"dataDaEntrega": "2022-11-06",
+                    		"urlProduto": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWBzPa-Microsoft-Ergonomic-Mouse-hero-Black-Microsoft-Wireless-Bluetooth-Mobile-Mouse-3600-in-black:VP1-539x400",
+                    		"urlImagem": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWBzPa-Microsoft-Ergonomic-Mouse-hero-Black-Microsoft-Wireless-Bluetooth-Mobile-Mouse-3600-in-black:VP1-539x400",
+                    		"descricao": "Mouse sem fio",
+                    		"status": "AGUARDANDO"
+                    		}
+                    ]
+                }
+            })
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</body>
 </html>
