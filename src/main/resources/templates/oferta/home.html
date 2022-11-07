@@ -47,22 +47,17 @@
             var app = new Vue({
                 el : '#ofertas',
                 data : {
-                    pedidos : [
-                    	{
-                    		"id": 6,
-                    		"nomeProduto": "Mouse",
-                    		"valorNegociado": null,
-                    		"dataDaEntrega": "2022-11-06",
-                    		"urlProduto": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWBzPa-Microsoft-Ergonomic-Mouse-hero-Black-Microsoft-Wireless-Bluetooth-Mobile-Mouse-3600-in-black:VP1-539x400",
-                    		"urlImagem": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/RWBzPa-Microsoft-Ergonomic-Mouse-hero-Black-Microsoft-Wireless-Bluetooth-Mobile-Mouse-3600-in-black:VP1-539x400",
-                    		"descricao": "Mouse sem fio",
-                    		"status": "AGUARDANDO"
-                    		}
-                    ]
-                }
+                    pedidos : []
+                },
+                mounted () {
+                    axios
+                      .get('http://localhost:8080/api/pedidos/aguardando')
+                      .then(response => (this.pedidos = response.data))
+                  }
             })
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
