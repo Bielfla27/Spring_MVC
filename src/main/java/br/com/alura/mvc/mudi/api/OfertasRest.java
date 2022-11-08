@@ -2,6 +2,8 @@ package br.com.alura.mvc.mudi.api;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +23,7 @@ public class OfertasRest {
 	private PedidosRepository pedidoRepository;
 	
 	@PostMapping
-	public Oferta criaOferta(@RequestBody RequisicaoNovaOferta requisicao ) { //@RequestBody falo pro spring preencher esse objeto com oq veio na requisição
+	public Oferta criaOferta(@Valid @RequestBody RequisicaoNovaOferta requisicao ) { //@RequestBody falo pro spring preencher esse objeto com oq veio na requisição
 		Optional<Pedido> pedidoBuscado = pedidoRepository.findById(requisicao.getPedidoId());
 		if(!pedidoBuscado.isPresent()) {
 			return null; 
