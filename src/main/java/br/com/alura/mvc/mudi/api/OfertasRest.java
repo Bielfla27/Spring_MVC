@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,9 @@ public class OfertasRest {
 	private PedidosRepository pedidoRepository;
 	
 	@PostMapping
-	public Oferta criaOferta(RequisicaoNovaOferta requisicao ) {
+	public Oferta criaOferta(@RequestBody RequisicaoNovaOferta requisicao ) { //@RequestBody falo pro spring preencher esse objeto com oq veio na requisição
 		Optional<Pedido> pedidoBuscado = pedidoRepository.findById(requisicao.getPedidoId());
-		if(pedidoBuscado.isPresent()) {
+		if(!pedidoBuscado.isPresent()) {
 			return null; 
 		}
 		Pedido pedido = pedidoBuscado.get();

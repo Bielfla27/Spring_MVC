@@ -34,6 +34,7 @@ public class Pedido {
 	@JsonIgnore // para não da o erro quando o json vim pegar os dados
 	private User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Oferta> ofertas;
 	
 	public String getNomeProduto() {
