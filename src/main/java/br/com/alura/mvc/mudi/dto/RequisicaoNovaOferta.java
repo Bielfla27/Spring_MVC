@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -20,6 +21,7 @@ public class RequisicaoNovaOferta {
  	private String valor;
 	@NotNull
 	@Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$") //validação de data
+	@NotBlank
 	private String dataDaEntrega;
 	private String comentario;
 	
