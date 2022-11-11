@@ -33,7 +33,7 @@ public class Pedido {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore // para não da o erro quando o json vim pegar os dados
 	private User user;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Oferta> ofertas;
 	
