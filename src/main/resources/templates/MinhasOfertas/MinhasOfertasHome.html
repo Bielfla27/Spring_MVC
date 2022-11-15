@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{base :: head}">
+</head>
+
+<body onload="onLoad()">
+    <div th:replace="~{base :: logo}"></div>
+
+    <div class="container" id="ofertas">
+
+        <div th:replace="~{base :: titulo('Faça sua Oferta')}"></div>
+
+        <div class="card mt-3" v-for="oferta in ofertas" >
+			
+            <div class="card-header alert-warning">{{oferta.nomeProduto}}</div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-8 mb-3">
+
+                        <div>Produto:  <a v-bind:href="oferta.urlProduto">{{oferta.nomeProduto}}</a> </div>
+                       
+
+                    
+
+                        <div class="row mt-3">
+                            <div class="col-md-5">Valor: 
+                            	<span>{{oferta.valor}}</span> 
+                            </div>
+                            <div class="col-md-7">Data de Entrega: 
+                            	<span >{{oferta.dataDaEntrega}}</span> 
+                            </div>
+                        </div>
+                         <div class="mt-2"  >
+                         	<label>Comentário:</label>
+                         	<span>{{oferta.comentario}}</span>                   
+                        </div>
+                       
+                        
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div>
+                            <img class="img-thumbnail" v-bind:src="oferta.urlImagem">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    function onLoad() {
+		var app = new Vue(
+		{
+			el : '#ofertas',
+			data : {
+				ofertas : []
+			},
+			mounted () {						    			 
+				axios
+				  .get('http://localhost:8080/api/ofertas/minhasOfertas')
+			      .then(response_oferta => {
+			    	  response_oferta.data.forEach(response_oferta => {
+			    	   response_oferta.dataDaEntrega = formataData(response_oferta.dataDaEntrega)
+			    		  
+			    	  })
+			    	  
+			    	  this.ofertas = response_oferta.data;
+			      })			    
+			},
+			methods: {
+				enviarOferta: function(pedido) {
+				
+					
+				} 
+			}
+		});
+	}
+    function formataData(objeto){
+    	var ano = objeto[0].toString();
+    	var mes = objeto[1].toString();
+    	var dia = objeto[2].toString();
+    	
+		if(dia.length == 1){
+			dia = '0'+objeto[2].toString();
+		}
+		if(mes.length == 1){
+			mes = '0'+objeto[2].toString();
+			console.log(mes);
+		}   	
+		return dia+'/'+mes+'/'+ano;
+    	
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   
+	
+</body>
+</html>

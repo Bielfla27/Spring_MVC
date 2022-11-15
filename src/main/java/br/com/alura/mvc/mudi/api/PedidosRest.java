@@ -24,7 +24,7 @@ public class PedidosRest {
 	public List<Pedido> getPedidoAguardandoOfertas(){
 		
 		Sort sort = Sort.by("id").descending(); // para fazer a consulta pela data e por ordem decrescente
-		PageRequest paginação = PageRequest.of(0, 1, sort); // colocando paginação no site e dizendo quantos itens mostrar por cada página e ordenando pelo sort 
+		PageRequest paginação = PageRequest.of(0, 10, sort); // colocando paginação no site e dizendo quantos itens mostrar por cada página e ordenando pelo sort 
 	
 		return pedidosRepository.findByStatus(StatusPedido.AGUARDANDO, paginação);
 	}

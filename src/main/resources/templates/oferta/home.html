@@ -4,7 +4,7 @@
 <head th:replace="~{base :: head}">
 </head>
 
-<body onload="onLoad()">
+<body onload="onLoad()" >
     <div th:replace="~{base :: logo}"></div>
 
     <div class="container" id="ofertas">
@@ -63,11 +63,16 @@
 				pedidos : []
 			},
 			mounted () {
+
+				
 				axios
 			      .get('http://localhost:8080/api/pedidos/aguardando')
 			      .then(response => {
 			    	  	response.data.forEach(pedido =>{
-			    	  		pedido.ofertaEnviada = false;
+			    	  		
+			    	  		pedido.dataDaEntrega = formataData(pedido.dataDaEntrega);
+			    	  		pedido.ofertaEnviada = false;		
+			    	  	
 			    	  		pedido.erros = {
 			    	  			valor: '',
 			    	  			dataDaEntrega: ''
@@ -96,12 +101,34 @@
 				    		  pedido.erros[error.field] = error.defaultMessage;
 				    	  })
 				      })
-				} 
+				},
+				
+				
 			}
 		});
 	}
+    function formataData(objeto){
+    	var ano = objeto[0].toString();
+    	var mes = objeto[1].toString();
+    	var dia = objeto[2].toString();
+    	
+		if(dia.length == 1){
+			dia = '0'+objeto[2].toString();
+		}
+		if(mes.length == 1){
+			mes = '0'+objeto[2].toString();
+		
+		}   	
+		return dia+'/'+mes+'/'+ano;
+    	
+    }
+ 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+   
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js">
+   
+    </script>
 </body>
 </html>

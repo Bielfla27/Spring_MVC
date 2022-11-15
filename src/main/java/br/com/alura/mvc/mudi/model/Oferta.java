@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Oferta {
@@ -20,7 +23,14 @@ public class Oferta {
 	private LocalDate dataDaEntrega;
 	private String comentario;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Pedido pedido;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private User user;
+	private String urlProduto;
+	private String urlImagem;
+	private String nomeProduto;
 	
 	public Long getId() {
 		return id;
@@ -51,6 +61,30 @@ public class Oferta {
 	}
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getUrlProduto() {
+		return urlProduto;
+	}
+	public void setUrlProduto(String urlProduto) {
+		this.urlProduto = urlProduto;
+	}
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 	
 	

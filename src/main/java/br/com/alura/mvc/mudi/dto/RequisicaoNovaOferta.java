@@ -25,6 +25,7 @@ public class RequisicaoNovaOferta {
 	private String dataDaEntrega;
 	private String comentario;
 	
+	
 	public Long getPedidoId() {
 		return pedidoId;
 	}
@@ -54,6 +55,7 @@ public class RequisicaoNovaOferta {
 		oferta.setComentario(this.comentario);
 		oferta.setDataDaEntrega(LocalDate.parse(this.dataDaEntrega, formatter));
 		oferta.setValor(new BigDecimal(this.valor));
+		
 		return oferta;
 	}
 	
