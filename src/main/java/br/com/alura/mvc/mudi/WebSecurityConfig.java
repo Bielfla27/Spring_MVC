@@ -27,9 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-
 		.authorizeRequests()
 		.antMatchers("/home/**") //estou abrindo uma exceção para qualquer pessoa poder ver a página /home
+		.permitAll()
+		.antMatchers("/cadastrar/**")
 		.permitAll()
 			.anyRequest().authenticated()
 		.and()
@@ -50,8 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	
-		
 		auth.jdbcAuthentication()
 			.dataSource(dataSource)
 			.passwordEncoder(encoder);
