@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -47,7 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 
-	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -56,4 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(encoder);
 	}
 
+	@Bean
+	public BCryptPasswordEncoder gerarCriptografia() {
+		BCryptPasswordEncoder criptografia = new BCryptPasswordEncoder();
+		return criptografia;
+	}
+	
+	
 }

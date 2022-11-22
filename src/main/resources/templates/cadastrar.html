@@ -6,21 +6,21 @@
 		<div th:replace="~{base :: logo}"></div>
 		
 		<div class="container">
-			<div th:replace="~{base :: titulo('Login')}"></div>
+			<div th:replace="~{base :: titulo('Cadastrar')}"></div>
 		
 		
 			
 			<div class="card mt-3" >
-				 <form th:action="@{/cadastrar}" method="post" class="card-body">
+				 <form th:action="@{/cadastrar}" th:object="${user}" method="post" class="card-body">
 		         
 		         	<div class="form-group">
 						<label for="username">Usuário</label>
-						<input name="username"  class="form-control"  placeholder="Digite seu nome">
+						<input type="text" th:field="*{username}" class="form-control"  placeholder="Digite seu nome">
 					</div>
 					
 					<div class="form-group">
 						<label for="password">Senha</label>
-						<input type="password" name="password"  class="form-control"  placeholder="Digite sua senha">
+						<input type="password" name="password" th:field="*{password}" class="form-control"  placeholder="Digite sua senha">
 					</div>
 					
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -29,5 +29,6 @@
 				
 			</div>
 		</div>
+		
 	</body>
 </html>
