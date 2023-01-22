@@ -2,9 +2,10 @@ package br.com.alura.mvc.mudi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 
-@EnableCaching //ANOTAÇÃO PARA CACHE FUNCIONAR NA APLICAÇÃO
+@EntityScan(basePackages = "br.com.alura.mvc.mudi.model" )
 @SpringBootApplication
 public class MudiApplication {
 

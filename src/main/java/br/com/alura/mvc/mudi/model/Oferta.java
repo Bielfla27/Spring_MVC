@@ -2,6 +2,7 @@ package br.com.alura.mvc.mudi.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +18,7 @@ public class Oferta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private UUID id;
 	private BigDecimal valor;
 	private LocalDate dataDaEntrega;
 	private String comentario;
@@ -32,10 +32,10 @@ public class Oferta {
 	private String urlImagem;
 	private String nomeProduto;
 	
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	public BigDecimal getValor() {

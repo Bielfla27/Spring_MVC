@@ -3,6 +3,7 @@ package br.com.alura.mvc.mudi.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ public class RequisicaoNovaOferta {
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	
-	private Long pedidoId;
+	private UUID pedidoId;
 	@NotNull
 	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$") //validação de valor
  	private String valor;
@@ -26,10 +27,10 @@ public class RequisicaoNovaOferta {
 	private String comentario;
 	
 	
-	public Long getPedidoId() {
+	public UUID getPedidoId() {
 		return pedidoId;
 	}
-	public void setPedidoId(Long pedidoId) {
+	public void setPedidoId(UUID pedidoId) {
 		this.pedidoId = pedidoId;
 	}
 	public String getValor() {

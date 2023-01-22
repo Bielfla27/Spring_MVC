@@ -59,6 +59,9 @@ public class CadastrarController {
 					.password(userCadastrado.getPassword())
 					.roles("USER")
 					.build();
+		 		usuarioAutenticado.getPassword();
+		 		usuarioAutenticado.getUsername();
+		 		usuarioAutenticado.getAuthorities();
 				JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
 				users.createUser(usuarioAutenticado);
 				return users;

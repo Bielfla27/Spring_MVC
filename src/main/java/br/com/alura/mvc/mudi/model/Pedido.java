@@ -3,6 +3,7 @@ package br.com.alura.mvc.mudi.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Pedido {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private UUID id;
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
 	private LocalDate dataDaEntrega;
@@ -83,10 +84,10 @@ public class Pedido {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	public List<Oferta> getOfertas() {
